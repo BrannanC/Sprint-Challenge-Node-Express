@@ -1,33 +1,60 @@
 .App {
   text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-header {
-  background-color: #282c34;
+  background: paleturquoise;
+  max-width: 1000px;
+  margin: 40px auto;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  border-radius: 6px;
+  border: 2px solid palevioletred;
 }
 
-.App-link {
-  color: #61dafb;
+.App h1 {
+  font-size: 4rem;
+  background: papayawhip;
+  margin: 20px auto;
+  max-width: 50%;
+  border-radius: 6px;
+  border: 2px solid palevioletred;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.App .projects {
+  min-height: 75vh;
+  border: 2px solid palevioletred;
+  border-radius: 6px;
+  margin: 20px;
+  background: papayawhip;
 }
+
+.App .projects .project {
+  margin: 40px auto;
+}
+
+.App .projects .project h3{
+  font-size: 2rem;
+  padding: 20px;
+  border-bottom: 2px dashed palevioletred;
+}
+
+.App .projects .project h3:hover {
+  transform: scale(1.002);
+  cursor: pointer;
+}
+
+.App .projects .project ul{
+  list-style: decimal inside none;
+  text-align: left;
+}
+
+.App .projects .project li{
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.App .projects .project li p{
+  font-size: 1.6rem;
+  font-weight: 300;
+  background: white;
+}
+
+
+

@@ -49,10 +49,11 @@ class Projects extends Component {
                             {x.description}
                         </h3>
                         {x.id === this.state.currentId &&
-                        this.state.actions.map(x => <div className="action" key={x.id}>
-                            <h5>{x.description}</h5>
-                            <p>{x.notes}</p>
-                        </div>)
+                        <ul>
+                        {this.state.actions.map(x => <li className="action" key={x.id}>
+                            {x.description}
+                            <p>Notes: {x.notes}</p>
+                        </li>)}</ul>
                         }
                         </div>
                     );
