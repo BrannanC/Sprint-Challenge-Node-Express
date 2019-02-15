@@ -6,6 +6,10 @@ class Projects extends Component {
         projects: [],
         currentId: '',
         actions: [],
+        newProject: {
+            name: '',
+            description: ''
+        }
     }
 
     componentDidMount(){
@@ -18,6 +22,16 @@ class Projects extends Component {
             })
             .catch()
     }
+
+    changeHandler = e => {
+        const name = e.target.name;
+        const value = e.target.value;
+        this.setState(prevState => ({
+          newProject: {...prevState.newProject,
+            [name]: value
+          }
+        }))
+      }
 
     toggleDesc = (id) => {
         if(id === this.state.currentId){
@@ -38,14 +52,46 @@ class Projects extends Component {
         }
     }
 
+    addProject = e => {
+        e.preventDefault();
+        axios
+          .post('http://localhost:4000/api/projects', this.state.newProject)
+          .then(res => {
+            this.setState(prevState => ({
+              projects: [...prevState.projects, res.data.project],
+              newProject: {
+                name: "",
+                description: ""
+              }
+            }))
+          })
+          .catch(err => console.log(err))
+    }
+
     render(){
         return (
             <div className="projects">
+                      <form onSubmit={this.addProject}>
+                        <input type="text" 
+                            name="name" 
+                            placeholder="Name of project..." 
+                            value={this.state.newProject.name} 
+                            onChange={this.changeHandler}
+                            />
+                        <textarea 
+                            name="description" 
+                            placeholder="Description..." 
+                            value={this.state.newProject.description} 
+                            onChange={this.changeHandler}
+                            />
+            <button type="submit">Add project</button>
+          </form>
                 {this.state.projects.length > 0 && 
                 this.state.projects.map(x => {
                     return (
-                        <div className="project" key={x.id}>
-                        <h3 onClick={() => this.toggleDesc(x.id)}>
+                        <div className="project" key={x.id}  onClick={() => this.toggleDesc(x.id)}>
+                        <h2>{x.name}</h2>
+                        <h3>
                             {x.description}
                         </h3>
                         {x.id === this.state.currentId &&
